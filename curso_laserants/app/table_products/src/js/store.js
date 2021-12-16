@@ -6,7 +6,7 @@ const ActionTypes = {
     productoAgregadoOModificado : 'producto-agregado-o-modificado'
 };
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
 
     switch (action.type) {
         case ActionTypes.productoAgregado:
@@ -24,17 +24,17 @@ const reducer = (state, action) => {
 
 /* FUNCTIONS */
 
-const producto_seleccionado = (index) => ({
+export const producto_seleccionado = (index) => ({
     type: ActionTypes.productoSeleccionado,
     payload: { index }
 });
 
-const producto_eliminado = (index) => ({
+export const producto_eliminado = (index) => ({
     type: ActionTypes.productoEliminado,
     payload: { index }
 });
 
-const producto_modificado = (data) => ({
+export const producto_modificado = (data) => ({
     type: ActionTypes.productoModificado,
     payload: {
         index: data.index,
@@ -45,7 +45,7 @@ const producto_modificado = (data) => ({
     }
 });
 
-const producto_agregado = (data) => ({
+export const producto_agregado = (data) => ({
     type: ActionTypes.productoAgregado,
     payload: {
         nombre: data.nombre,
@@ -55,7 +55,7 @@ const producto_agregado = (data) => ({
     }
 });
 
-const agregar_o_modificar_producto = (data) => ({
+export const agregar_o_modificar_producto = (data) => ({
     type: ActionTypes.productoAgregadoOModificado,
     payload: {
         nombre: data.nombre,
@@ -112,7 +112,7 @@ function producto_eliminado_reducer(state, action) {
 }
 
 /* MIDDLEWARES */
-function generador_codigo_producto_builder(last_id){
+export function generador_codigo_producto_builder(last_id){
     let index = last_id;
     return store => next => action => {
         if (action.type != ActionTypes.productoAgregado) {
@@ -133,13 +133,13 @@ function generador_codigo_producto_builder(last_id){
     };
 }
 
-const logger_middleware = store => next => action => {
+export const logger_middleware = store => next => action => {
     console.log('dispatching', action);
     const result = next(action);
     return result;
 };
 
-const agregar_o_modificar_producto_middleware = store => next => action => {
+export const agregar_o_modificar_producto_middleware = store => next => action => {
     if (action.type != ActionTypes.productoAgregadoOModificado) {
         return next(action);
     }

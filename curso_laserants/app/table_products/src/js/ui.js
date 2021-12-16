@@ -1,4 +1,4 @@
-const ui = {
+export const ui = {
     onFormSubmit: (data) => {},
     render_form,
     render_table,
