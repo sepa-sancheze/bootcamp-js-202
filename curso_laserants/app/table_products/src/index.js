@@ -1,3 +1,13 @@
-import './js/app';
+import React from 'react';
+import ReactDom from 'react-dom';
+import './index.css';
 
-console.log('Index.js');
+const container = document.getElementById('root');
+
+const App = () => (
+    <div className='app'>
+        <h1>Hola React</h1>
+    </div>
+);
+
+ReactDom.render(<App/>, container);
